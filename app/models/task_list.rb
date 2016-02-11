@@ -4,5 +4,5 @@ class TaskList < ApplicationRecord
   has_many :tasks
 
   # validations
-  validates :title, presence: true
+  validates :user_id, :title, presence: true
 end

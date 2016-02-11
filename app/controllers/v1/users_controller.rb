@@ -6,25 +6,25 @@ module V1
     def index
       @users = User.all
 
-      respond_with @users
+      respond_with_json @users
     end
 
     # GET /users/1
     def show
-      respond_with @user
+      respond_with_json @user
     end
 
     # POST /users
     def create
       @user = User.new(user_params)
       @user.save
-      respond_with @user, status: :created, location: @user
+      respond_with_json @user, status: :created, location: @user
     end
 
     # PATCH/PUT /users/1
     def update
       @user.update(user_params)
-      respond_with @user
+      respond_with_json @user
     end
 
     # DELETE /users/1

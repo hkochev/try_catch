@@ -9,11 +9,13 @@ class V1::UsersControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get users_url, headers: @headers
     assert_response :success
+    expect(response.body).must_include 'users'
   end
 
   test "should show user" do
     get user_url(user), headers: @headers
     assert_response :success
+    expect(response.body).must_include 'user'
   end
 
   test "should create user" do
@@ -22,6 +24,18 @@ class V1::UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response 201
+  end
+
+  test "should return bad response without email" do
+    post users_url, params: { user: { password: password } }, headers: @headers
+
+    assert_response :unprocessable_entity
+  end
+
+  test "should return bad response without password" do
+    post users_url, params: { user: { email: email } }, headers: @headers
+
+    assert_response :unprocessable_entity
   end
 
   test "should update user" do

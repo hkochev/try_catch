@@ -15,10 +15,10 @@ gem 'puma'
 gem 'bcrypt', '~> 3.1.7'
 # We going to use Serializers to isolate JSON related logic
 gem 'active_model_serializers'
-# responders to DRY out our controllers
-gem 'responders'
 # Validates user emails
 gem 'email_validator'
+# for authorization
+gem 'cancancan'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
