@@ -4,6 +4,17 @@ require 'rails/test_help'
 
 DatabaseCleaner.strategy = :transaction
 
+class ActionDispatch::IntegrationTest
+   def http_login(email, password, headers = {})
+     User.find_or_create_by(email: email) do |user|
+       user.password = password
+    end
+     headers['HTTP_AUTHORIZATION'] ||= ActionController::HttpAuthentication::Basic.encode_credentials(email, password)
+
+     headers
+   end
+end
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
