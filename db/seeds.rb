@@ -4,4 +4,4 @@ admin = User.create! email: 'test@test.com', password: 'testpass', role: :admin
 user = User.create! email: 'test1@test.com', password: 'testpass', role: :user
 guest = User.create! email: 'test2@test.com', password: 'testpass', role: :guest
 
-[admin, user, guest].each { |user| TaskList.create! title: "#{user.role} task" }
+[admin, user, guest].each { |user| TaskList.create! title: "#{user.role} task", user: user }
